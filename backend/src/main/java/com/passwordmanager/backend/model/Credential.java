@@ -19,13 +19,18 @@ public class Credential {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     @NotBlank(message = "O campo tag é obrigatorio!")
     private String tag;
 
     @Column
-    @NotBlank(message = "O campo senha para gerenciamento é obrigatorio")
-    private String encryptedPassword;
+    private byte[] encryptedPassword;
+
+    @Column
+    private byte[] salt;
+
+    @Column
+    private byte[] iv;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
